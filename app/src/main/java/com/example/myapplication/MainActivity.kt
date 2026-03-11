@@ -4,17 +4,24 @@ import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
+import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
+import androidx.compose.material3.Button
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.setValue
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.unit.dp
 import androidx.compose.ui.tooling.preview.Preview
 import com.example.myapplication.ui.theme.MyApplicationTheme
-import androidx.compose.foundation.layout.Column
-import androidx.compose.material3.Button
-import androidx.compose.runtime.*
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -35,18 +42,37 @@ class MainActivity : ComponentActivity() {
 
 @Composable
 fun Greeting(name: String, modifier: Modifier = Modifier) {
-    // 定义可以变化的文字
     var text by remember { mutableStateOf("Hello $name!") }
 
-    // 垂直布局：文字 + 按钮
-    Column(modifier = modifier) {
+    Column(
+        modifier = modifier.fillMaxSize(),
+        horizontalAlignment = Alignment.CenterHorizontally,
+        verticalArrangement = Arrangement.Center
+    ) {
         Text(text = text)
 
-        // 按钮：点击后修改文字
+        Spacer(modifier = Modifier.padding(16.dp))
+
         Button(onClick = {
-            text = "我点击按钮啦！🎉"
+            text = "你点了按钮1 ✅"
         }) {
-            Text("点我")
+            Text("按钮1")
+        }
+
+        Spacer(modifier = Modifier.padding(8.dp))
+
+        Button(onClick = {
+            text = "你点了按钮2 🔥"
+        }) {
+            Text("按钮2")
+        }
+
+        Spacer(modifier = Modifier.padding(8.dp))
+
+        Button(onClick = {
+            text = "你点了按钮3 🎉"
+        }) {
+            Text("按钮3")
         }
     }
 }
